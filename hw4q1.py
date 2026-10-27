@@ -7,9 +7,9 @@ def main():
         Y = f.readline().strip()
     n, m = len(X), len(Y)
 
-    # D[i][j]: best score aligning some suffix of X[:i] with Y[:j].
-    # First column is 0 (suffix of X may start anywhere); first row is
-    # -2*j (prefix of Y must start at Y[0], so it is all insertions).
+    # D[i][j]: best score aligning some suffix of X[:i] with Y[:j]
+    # First column is 0 -> suffix of X may start anywhere)
+    # first row is -2*j -> prefix of Y must start at Y[0], so it is all insertions
     prev = [-2 * j for j in range(m + 1)]
     for i in range(1, n + 1):
         cur = [0] * (m + 1)
@@ -18,7 +18,7 @@ def main():
             cur[j] = max(prev[j - 1] + s, prev[j] - 2, cur[j - 1] - 2)
         prev = cur
 
-    # prev is now the last row (alignments reaching the end of X).
+    # prev is now the last row -> alignments reaching the end of X
     best_len, best = 0, prev[0]
     for j in range(m + 1):
         if prev[j] >= best:

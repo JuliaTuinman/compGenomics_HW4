@@ -7,7 +7,8 @@ def main():
         Y = f.readline().strip()
     n, m = len(X), len(Y)
 
-    # D[i][j]: edit distance of X[:i], Y[:j]; C[i][j]: number of optimal alignments.
+    # D[i][j]: edit distance of X[:i], Y[:j]
+    # C[i][j]: number of optimal alignments
     D = [[0] * (m + 1) for _ in range(n + 1)]
     C = [[1] * (m + 1) for _ in range(n + 1)]
     for i in range(n + 1):
